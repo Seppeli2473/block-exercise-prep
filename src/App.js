@@ -1,18 +1,41 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Main from './components/MainComponent';
+// import logo from './logo.svg';
+
+import { Navbar, NavbarBrand } from 'reactstrap';
 import './App.css';
+import Main from './components/MainComponent';
+import { DISHES } from './shared/dishes';
+import React, { Component } from 'react'
+import { BrowserRouter } from 'react-router-dom';
+
+
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      dishes: DISHES
+    };
+  }
+  
   render() {
     return (
-      <BrowserRouter>
+      
+      <div className="App">
+        <BrowserRouter>
         <div className="App">
-          <Main />
+        <Main />
         </div>
-      </BrowserRouter>
+        </BrowserRouter>
+
+      </div>
     );
   }
 }
+
+
+
+
+
 
 export default App;
