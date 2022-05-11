@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+
 
 class DishDetail extends Component {
     renderDish() {
         const dish = this.props.dishes[this.props.selectedDish];
         if (dish != null)
             return (
-                <Card>
+                <Card className='mb-5'>
                     <CardImg top src={dish.image} alt={dish.name} />
                     <CardBody>
                       <CardTitle>{dish.name}</CardTitle>
@@ -45,16 +48,30 @@ class DishDetail extends Component {
     }
 
     render() {
+        const dish = this.props.dishes[this.props.selectedDish];
         return (
-            <>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish()}
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{dish.name}</h3>
+                        <hr />
+                    </div>                
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments()}
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish()}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments()}
+                    </div>
                 </div>
-            </>
+            </div>
         );
+
     }
 }
 
